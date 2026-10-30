@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard – CloudVault</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+  <header>
+    <a href="home.html" class="logo">Cloud<span>Vault</span></a>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="../portfolio/index.html">About</a>
+      <a href="login.html" class="btn btn-light" id="logout-btn">Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <h2 class="page-title">My Files</h2>
+
+      <!-- Upload area -->
+      <section class="upload-zone">
+        <p>Choose a file to encrypt and upload to the cloud</p>
+        <span id="file-name">No file selected</span>
+
+        <input type="file" id="file-input" hidden>
+        <button class="btn btn-outline" id="choose-btn">Choose File</button>
+        <button class="btn btn-primary" id="upload-btn">Upload</button>
+
+        <div class="progress" id="progress">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <p class="message" id="message"></p>
+      </section>
+
+      <!-- File list -->
+      <div class="table-head">
+        <h3>Stored Files</h3>
+        <button class="btn btn-outline btn-small" id="refresh-btn">Refresh</button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Chunks</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="file-list"></tbody>
+      </table>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 CloudVault · Built with Flask + AWS S3 · <a href="../portfolio/index.html">About</a></p>
+  </footer>
+
+  <script src="/static/js/dashboard.js"></script>
+
+</body>
+</html>

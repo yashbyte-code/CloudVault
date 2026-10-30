@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About – CloudVault</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+    :root {
+      --maroon: #6B1E2E;
+      --beige: #F7F1E8;
+      --card: #FFFFFF;
+      --orange: #E08A1E;
+      --orange-dark: #C77514;
+      --text: #2B2B2B;
+      --muted: #7A6F66;
+      --border: #E4D9C8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', sans-serif; background: var(--beige); color: var(--text); line-height: 1.6; }
+
+    header { background: var(--maroon); color: #fff; padding: 14px 32px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.4rem; font-weight: 700; }
+    .logo span { color: var(--orange); }
+    header nav a { color: #fff; text-decoration: none; margin-left: 22px; font-weight: 500; font-size: 0.95rem; }
+    header nav a:hover { color: var(--orange); }
+
+    footer { background: var(--maroon); color: #E9D9DC; text-align: center; padding: 18px 20px; font-size: 0.85rem; }
+
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+    section { padding: 40px 0 10px; }
+    h1 { font-size: 2.4rem; color: var(--maroon); margin-bottom: 10px; }
+    h2 { color: var(--maroon); margin-bottom: 18px; font-size: 1.6rem; }
+    .lead { color: var(--muted); max-width: 680px; }
+    .hero { text-align: center; padding: 50px 0 10px; }
+    .hero .lead { margin: 0 auto; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px; box-shadow: 0 2px 8px rgba(107,30,46,0.06); }
+    .card h3 { color: var(--maroon); font-size: 1.05rem; margin-bottom: 6px; }
+    .card p { color: var(--muted); font-size: 0.9rem; }
+    .step-num { display: inline-block; background: var(--orange); color: #fff; width: 28px; height: 28px; line-height: 28px; text-align: center; border-radius: 50%; font-weight: 600; font-size: 0.85rem; margin-bottom: 8px; }
+
+    /* Architecture diagram */
+    .flow { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; }
+    .box { background: var(--maroon); color: #fff; padding: 12px 18px; border-radius: 10px; font-weight: 500; font-size: 0.9rem; text-align: center; }
+    .box.orange { background: var(--orange); }
+    .arrow { color: var(--orange-dark); font-size: 1.4rem; font-weight: 700; }
+    .flow-label { text-align: center; color: var(--muted); font-size: 0.85rem; margin: 6px 0 22px; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+    .tag { background: #FBEBD0; color: var(--orange-dark); padding: 6px 16px; border-radius: 20px; font-weight: 600; font-size: 0.85rem; }
+
+    .author { padding-bottom: 50px; }
+    @media (max-width: 640px) { header { flex-direction: column; gap: 8px; } h1 { font-size: 1.9rem; } }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Cloud<span>Vault</span></div>
+    <nav>
+      <a href="#how">How it works</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#tech">Tech stack</a>
+      <a href="#author">Author</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <div class="hero">
+      <h1>About CloudVault</h1>
+      <p class="lead">A secure cloud file storage system that splits files into chunks, encrypts each chunk, and stores them in Amazon S3. This page is hosted on Amazon S3 and delivered over HTTPS through Amazon CloudFront.</p>
+    </div>
+
+    <section id="how">
+      <h2>How it works</h2>
+      <div class="grid">
+        <div class="card"><div class="step-num">1</div><h3>Upload</h3><p>The user selects a file and sends it to the Flask backend.</p></div>
+        <div class="card"><div class="step-num">2</div><h3>Split</h3><p>The file is divided into fixed-size chunks (1 MB each).</p></div>
+        <div class="card"><div class="step-num">3</div><h3>Encrypt</h3><p>Every chunk is encrypted with AES-256-GCM before leaving the server.</p></div>
+        <div class="card"><div class="step-num">4</div><h3>Store</h3><p>Encrypted chunks go to a private Amazon S3 bucket; metadata is saved in a database.</p></div>
+        <div class="card"><div class="step-num">5</div><h3>Download</h3><p>Chunks are fetched, decrypted, and reassembled in the correct order.</p></div>
+      </div>
+    </section>
+
+    <section id="architecture">
+      <h2>Architecture</h2>
+      <div class="card">
+        <div class="flow">
+          <div class="box">Browser</div><span class="arrow">→</span>
+          <div class="box">Flask Backend</div><span class="arrow">→</span>
+          <div class="box">Chunk + Encrypt</div><span class="arrow">→</span>
+          <div class="box orange">Amazon S3 (private)</div>
+        </div>
+        <p class="flow-label">CloudVault app: file storage flow</p>
+        <div class="flow">
+          <div class="box">Visitor</div><span class="arrow">→</span>
+          <div class="box orange">CloudFront (HTTPS)</div><span class="arrow">→</span>
+          <div class="box orange">S3 static website</div>
+        </div>
+        <p class="flow-label">This portfolio site: content delivery flow</p>
+      </div>
+    </section>
+
+    <section id="security">
+      <h2>Security features</h2>
+      <div class="grid">
+        <div class="card"><h3>AES-256-GCM</h3><p>Authenticated encryption detects any tampering with stored chunks.</p></div>
+        <div class="card"><h3>Per-file keys</h3><p>Each file has its own key, protected by a master key (envelope encryption).</p></div>
+        <div class="card"><h3>Private bucket</h3><p>S3 public access is blocked; only the app can read the chunks.</p></div>
+        <div class="card"><h3>Least privilege</h3><p>The IAM user can access only this one bucket.</p></div>
+      </div>
+    </section>
+
+    <section id="tech">
+      <h2>Tech stack</h2>
+      <div class="tags">
+        <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+        <span class="tag">Python</span><span class="tag">Flask</span><span class="tag">cryptography</span>
+        <span class="tag">boto3</span><span class="tag">SQLite</span>
+        <span class="tag">Amazon S3</span><span class="tag">Amazon CloudFront</span>
+      </div>
+    </section>
+
+    <section id="author" class="author">
+      <h2>Author</h2>
+      <div class="card">
+        <h3>Your Name</h3>
+        <p>Your course · Your college · 2026</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 CloudVault · Mini project · Built with Flask + AWS S3 + CloudFront</p>
+  </footer>
+
+</body>
+</html>

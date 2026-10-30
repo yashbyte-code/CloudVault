@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CloudVault – Secure Cloud File Storage</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+  <header>
+    <a href="home.html" class="logo">Cloud<span>Vault</span></a>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="../portfolio/index.html">About</a>
+      <a href="login.html" class="btn btn-light">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <section class="hero">
+        <h1>Your files, safe in the cloud</h1>
+        <p>CloudVault splits your files into pieces, encrypts every piece, and stores them securely in Amazon S3.</p>
+        <a href="login.html" class="btn btn-primary">Get Started</a>
+      </section>
+
+      <section class="features">
+        <div class="card feature-card">
+          <div class="icon">🔒</div>
+          <h3>Encrypted</h3>
+          <p>Every file is encrypted with AES-256 before it leaves the server.</p>
+        </div>
+        <div class="card feature-card">
+          <div class="icon">🧩</div>
+          <h3>Chunked</h3>
+          <p>Files are divided into small segments and reassembled when you download.</p>
+        </div>
+        <div class="card feature-card">
+          <div class="icon">☁️</div>
+          <h3>Cloud Stored</h3>
+          <p>Encrypted chunks are kept in a private Amazon S3 bucket.</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 CloudVault · Built with Flask + AWS S3 · <a href="../portfolio/index.html">About</a></p>
+  </footer>
+
+</body>
+</html>

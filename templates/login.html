@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login – CloudVault</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+  <header>
+    <a href="home.html" class="logo">Cloud<span>Vault</span></a>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="../portfolio/index.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="card auth-box">
+
+        <h2 id="form-title">Login</h2>
+
+        <form id="auth-form">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" required>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" required minlength="6">
+          </div>
+
+          <div class="form-group" id="confirm-group" style="display:none;">
+            <label for="confirm">Confirm Password</label>
+            <input type="password" id="confirm">
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="submit-btn">Login</button>
+          <p class="message" id="message"></p>
+        </form>
+
+        <p class="auth-switch">
+          <span id="switch-prefix">New here?</span>
+          <a href="#" id="switch-link">Create an account</a>
+        </p>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 CloudVault · Built with Flask + AWS S3 · <a href="../portfolio/index.html">About</a></p>
+  </footer>
+
+  <script src="/static/js/auth.js"></script>
+
+</body>
+</html>
